@@ -21,6 +21,10 @@ func New(opt *Options) Logger {
 	}
 }
 
+func Attach(l *zap.Logger) Logger {
+	return &glog{l: l}
+}
+
 func (g *glog) AddCallerSkip(n int) Logger {
 	l := g.l.WithOptions(zap.AddCallerSkip(n))
 	return &glog{l: l, f: g.f}
